@@ -1,5 +1,18 @@
 # Key takeaways:
 
+## CSS Priority Rules
+
+| Order | Priorities | Example |
+| :-------------: | :-------------: | ----- |
+| 1 | Importance |	Adding `!important` (e.g., “`width: 100% !important`”) to a value overrides all other similar styles (but never use `!important`) |
+| 2 |	Inline |	A declaration that is put on an element using `style=` |
+| 3 |	Media Type |	When a style is applied through a media query |
+| 4 |	User defined |	Most browsers have the accessibility feature: a user defined CSS |
+| 5 |	Selector specificity |	Styling applied via a class or id overwrites generic styling |
+| 6 |	Rule order |	The last style written has priority |
+| 7 |	Parent inheritance |	If there is no style specified, then children inherit styles from their parent |
+| 8 |	CSS |	CSS rules from a stylesheet or `style` block that are applied to generic elements |
+| 9 |	Browser defaults |	Lowest priority, these are the default styles that browsers ship with |
 
 ## Sizing Units Usage Guidelines
 
