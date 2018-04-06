@@ -83,3 +83,12 @@
 #### display: flex
 - Forces all child elements to fill the entire parent element
 
+### Margins, padding and Borders
+- If you specify the width of a block element and apply a border or padding to it, the additional border or padding will go outside of the content. You end up with an element that is bigger than the dimensions you specified
+- To fix the total width of the content box, and force the border and padding to fit inside we can use the **box-sizing** declaration
+- For block elements, the browser allows for only one of the vertical margins to apply (the larger one)
+
+### Floats
+
+
+
