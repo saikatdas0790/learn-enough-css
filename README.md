@@ -4,7 +4,7 @@
 
 | Order | Priorities | Example |
 | :-------------: | :-------------: | ----- |
-| 1 | Importance |	Adding `!important` (e.g., “`width: 100% !important`”) to a value overrides all other similar styles (but never use `!important`) |
+| 1 | Importance |	Adding `!important` (e.g., `width: 100% !important`) to a value overrides all other similar styles (but never use `!important`) |
 | 2 |	Inline |	A declaration that is put on an element using `style=` |
 | 3 |	Media Type |	When a style is applied through a media query |
 | 4 |	User defined |	Most browsers have the accessibility feature: a user defined CSS |
@@ -14,16 +14,43 @@
 | 8 |	CSS |	CSS rules from a stylesheet or `style` block that are applied to generic elements |
 | 9 |	Browser defaults |	Lowest priority, these are the default styles that browsers ship with |
 
-## CSS Selectors
+## CSS Combinators
 
-### > (child selector)
-- Select only elements that are direct children of the parent
+### Child Selector
+`div > .class`
+- Will select all elements that are direct children of a `div` and have the class `.class`
 
-### :: (immediate-child)
+### Descendant Selectors
+`div .class`
+- Will select all elements inside a div and having the class `.class`
+
+### Adjacent Sibling Selector
+`div + .class`
+- Will match any element that immediately follows a `div` and have the class `.class`
+
+### `:` (Pseudo Classes)
+Pseudo-classes select regular elements but under certain conditions, like when their position relative to siblings or when they’re under a particular state.
+#### Dynamic pseudo-classes
+- `:link`
+- `:visited`
+- `:hover`
+- `:active`
+- `:focus`
+#### UI element states pseudo-classes
+- `:enabled`
+- `:disabled`
+- `:checked`
+
+### `::` (Pseudo Elements)
+Pseudo-elements effectively create new elements that are not specified in the markup of the document and can be manipulated much like a regular element. This introduces huge benefits for creating cool effects with minimal markup, also aiding significantly in keeping the presentation of the document out of the HTML and in CSS where it belongs.
+- `::before`
+- `::after`
+- `::first-letter`
+- `::first-line`
 
 ## Sizing Units Usage Guidelines
 
-### px (pixel)
+### `px` (pixel)
 #### Use for
 - Margins
 - Padding
@@ -31,7 +58,7 @@
 - Banner ads
 - Images
 
-### % (percentage)
+### `%` (percentage)
 #### Salient points
 - Percentage sizing is based on the parent container that an element is wrapped by
 - Percentage heights are a little weird because they require a set height on the parent element
@@ -39,7 +66,7 @@
 #### Use for
 - Text Size
 
-### em
+### `em`
 #### Salient points
 - Represents number of pixels equal to the current font size of any given element’s parent container
 - If there is no font size that is inherited, then the default page font size is used
@@ -48,7 +75,7 @@
 #### Use for
 - Fonts
 
-### rem (root em)
+### `rem` (root em)
 #### Salient points:
 - Percentage of absolute font size of the html tag
 - Best practice is to set a font size for the module’s wrapper using a *rem* unit, and then style the fonts inside using *em* units
@@ -56,9 +83,14 @@
 - Boxes
 - Font sizes
 
-### vh & vw (viewport-height and viewport-width)
+### `vh` & `vw` (viewport-height and viewport-width)
 #### Salient points
 - Size elements on the page based on the actual size of the browser window or mobile device screen
+
+### `vmin` & `vmax`
+#### Salient points:
+- `vmin` represents 1% of the smaller viewport dimension (either vh or vw, whichever is smaller)
+- `vmax` represents 1% of the larger viewport dimension (either vh or vw, whichever is larger)
 
 
 ## Box Model
@@ -92,7 +124,7 @@
 
 ### Margins, Padding and Borders
 - If you specify the width of a block element and apply a border or padding to it, the additional border or padding will go outside of the content. You end up with an element that is bigger than the dimensions you specified
-- To fix the total width of the content box, and force the border and padding to fit inside we can use the *box-sizing: border-box* declaration
+- To fix the total width of the content box, and force the *border* and *padding* to fit inside we can use the `box-sizing: border-box` declaration
 
 #### Margin
 - For block elements, the browser allows for only one of the vertical margins to apply (the larger one)
@@ -103,7 +135,6 @@
 - *Padding* pushes content inside an element away from the edges of the element
 
 #### Border
-- 
 ##### border-style
 - none
 - hidden
@@ -124,7 +155,7 @@
 
 ### Overflow
 Overflow property controls what happens to content that breaks outside of its bounds for a  wrapper that has a set height or width
-- *visible*: content is not clipped when it proceeds outside its box. This is the default value of the property
+- *visible*: content is not clipped when it proceeds outside its box. This is the *default* value of the property
 - *hidden*: overflowing content will be hidden
 - *scroll*: similar to hidden except users will be able to scroll through the hidden content
 - *auto*: if the content proceeds outside its box then that content will be hidden whilst a scroll bar should be visible for users to read the rest of the content.
@@ -134,5 +165,14 @@ Overflow property controls what happens to content that breaks outside of its bo
 > *overflow: hidden* works for clearing floats because it makes the browser want to keep content contained entirely within the wrapper. If there is no set dimension on the wrapper, the browser just expands the boundaries of the wrapper to reach the end of the floated elements, and then lets the elements that follow display on the page normally
 
 
+## Jekyll Basics
 
+### Jekyll Object Types
+- layouts/layout templates
+- includes
+- pages/page templates
+- posts
 
+#### Layouts/layout templates
+- Anything in the `_layouts` directory get read by the engine looking for *Liquid* tags and other Jekyll formatting
+- One of the key parts of many Jekyll pages is *frontmatter*, which is metadata at the top of an HTML file (in YAML format) that identifies the kind of layout to be used, a page-specific title, etc.

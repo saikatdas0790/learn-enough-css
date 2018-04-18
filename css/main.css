@@ -1,0 +1,130 @@
+/* GLOBAL STYLES */
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    font-size: 7vw;
+    margin-top: 0;
+}
+
+a {
+    color: #f00;
+}
+
+
+/* HEADER STYLES */
+
+.header-nav {
+    float: right;
+    padding: 5.5vh 60px 0 0;
+}
+
+.header-nav > li {
+    display: inline-block;
+    margin-left: 1em;
+}
+
+.header-nav a {
+    color: #000;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.header-nav a:hover,
+.header-nav a:active {
+    color: #ed6e2f;
+}
+
+.header-logo:hover,
+.header-logo:active {
+    opacity: 0.5;
+}
+
+
+/* HERO STYLES */
+
+.full-hero {
+    background-color: #c7dbfc;
+    height: 50vh;
+}
+
+
+/* SOCIAL STYLES */
+
+.social-link {
+    background: rgba(150, 150, 150, 0.5);
+    border-radius: 99px;
+    box-sizing: border-box;
+    color: #fff;
+    display: inline-block;
+    font-family: helvetica, arial, sans;
+    font-size: 1rem;
+    font-weight: bold;
+    height: 2.5em;
+    line-height: 1;
+    padding-top: 0.85em;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    width: 2.5em;
+}
+
+.social-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.social-list>li {
+    display: inline-block;
+    margin: 0 0.5em;
+}
+
+
+/* BIO STYLES */
+
+.bio-wrapper {
+    font-size: 24px;
+    margin: auto;
+    max-width: 960px;
+    overflow: hidden;
+}
+
+.bio-box {
+    border: 1px solid black;
+    box-sizing: border-box;
+    float: left;
+    font-size: 1rem;
+    margin: 40px 1% 0;
+    padding: 2%;
+    width: 23%;
+}
+
+.bio-box h3 {
+    color: #fff;
+    font-size: 1.5em;
+    margin: -40px 0 1em;
+    text-align: center;
+}
+
+.bio-box img {
+    width: 100%;
+}
+
+.bio-box .social-link {
+    display: block;
+    margin: 2em 0 1em;
+}
+
+.bio-copy {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.bio-copy a {
+    color: green;
+}
