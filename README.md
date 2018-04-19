@@ -1,10 +1,10 @@
-# Key takeaways:
+# Key takeaways
 
 ## CSS Priority Rules
 
 | Order | Priorities | Example |
 | :-------------: | :-------------: | ----- |
-| 1 | Importance |	Adding `!important` (e.g., `width: 100% !important`) to a value overrides all other similar styles (but never use `!important`) |
+| 1 | Importance |  Adding `!important` (e.g., `width: 100% !important`) to a value overrides all other similar styles (but never use `!important`) |
 | 2 |	Inline |	A declaration that is put on an element using `style=` |
 | 3 |	Media Type |	When a style is applied through a media query |
 | 4 |	User defined |	Most browsers have the accessibility feature: a user defined CSS |
@@ -28,8 +28,16 @@
 `div + .class`
 - Will match any element that immediately follows a `div` and have the class `.class`
 
+### General Sibling Selector
+`div ~ .class`
+- Will match all elements of the type in the declaration if they follow the primary element
+- The sibling selectors don’t pass styles to elements that are wrapped inside any other elements. They only work on elements inside the same parent
+
 ### `:` (Pseudo Classes)
-Pseudo-classes select regular elements but under certain conditions, like when their position relative to siblings or when they’re under a particular state.
+- Pseudo-classes select regular elements but under certain conditions, like when their position relative to siblings or when they’re under a particular state
+- When you are using the child pseudo-classes you need the elements to be inside of some other HTML element
+- If there is anything like text, or an HTML element of a different type, between the top of the parent and the element you are trying to target, the first and last child pseudo-classes won’t work
+
 #### Dynamic pseudo-classes
 - `:link`
 - `:visited`
@@ -176,3 +184,26 @@ Overflow property controls what happens to content that breaks outside of its bo
 #### Layouts/layout templates
 - Anything in the `_layouts` directory get read by the engine looking for *Liquid* tags and other Jekyll formatting
 - One of the key parts of many Jekyll pages is *frontmatter*, which is metadata at the top of an HTML file (in YAML format) that identifies the kind of layout to be used, a page-specific title, etc.
+- If there is no frontmatter in a layout file, then it is a true layout, and it needs to have a full HTML page structure. If there is frontmatter, then the file is a layout template that can be built into other layouts, and it doesn’t need to have a full HTML page structure
+- Layouts are often the most base-level objects, defining a standard page with a `DOCTYPE, html/head/body` tags, `meta` tags, stylesheet links, JavaScript, etc., and they usually pull in includes like a site header or site footer
+- Layouts have the special ability to load content, like posts, using a generic Liquid tag that looks like this: `{{ content }}`
+
+#### Includes
+- Files in the `_includes` folder can have Jekyll magic even though they don’t need frontmatter, and these files are always intended to be built into something else
+- Includes tend to be little snippets of a site that get repeated on many pages, such as the *header* and *footer* or a standard set of social-media *links*
+
+#### Pages
+- Any other HTML file in the project directory is a page
+- If there is no frontmatter in the file it is a static page, and Jekyll magic will not work (Liquid tags go unprocessed)
+- If a page has frontmatter, though, it will need to specify a layout, and then all the Jekyll magic will be available
+
+#### Posts
+- Posts are self-contained pieces of content, such as blog posts or product details, that are saved as files in the `_posts` directory
+- Content like *blog posts* are typically organized by date, while other post content (like product descriptions) are organized based on other attributes into *collections*
+
+### Style Note: Style HTML5 elements with classes
+- To ensure maximum backwards compatibility, it’s not a good idea to target the newer HTML5 semantic elements like `header` and `nav` directly
+- When an old browser encounters new HTML tags, it sees them as regular `divs`, and any styles are ignored
+- To avoid this situation, it’s better to give such elements classes, and then target your styles at the classes
+
+### Positioning
