@@ -8,7 +8,7 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    font-family: helvetica, arial, sans;
+    font-family: 'Open Sans', helvetica, arial, sans;
     min-height: 100vh;
 }
 
@@ -49,6 +49,11 @@ h4 {
     color: #999;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', helvetica, sans;
+    font-weight: 100;
 }
 
 /* HEADER STYLES */
@@ -103,7 +108,8 @@ h4 {
 }
 
 .nav-links a,
-.drop-trigger {
+.drop-trigger,
+.show-mobile-menu {
     font-size: 0.8rem;
     font-weight: bold;
     text-decoration: none;
@@ -121,6 +127,13 @@ h4 {
 
 .header-nav>li:first-child a:hover {
     color: #fff;
+}
+
+/* MOBILE MENU */
+
+.mobile-menu-check,
+.show-mobile-menu {
+    display: none;
 }
 
 /* DROPDOWN STYLES */
@@ -382,15 +395,15 @@ h4 {
     color: #fff;
     display: inline-block;
     font-family: helvetica, arial, sans;
-    font-size: 1rem;
+    font-size: 1.7em;
     font-weight: bold;
-    height: 2.5em;
+    height: 1.5em;
     line-height: 1;
-    padding-top: 0.85em;
+    padding-top: 0.25em;
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
-    width: 2.5em;
+    width: 1.5em;
 }
 
 .social-list>li {
@@ -670,6 +683,75 @@ h4 {
     .header-logo {
         left: auto;
     }
+
+    /* MOBILE MENU */
+    .show-mobile-menu {
+        display: block;
+        float: right;
+        margin-top: 1.5vh;
+        padding: 1.5em;
+        position: relative;
+    }
+
+    .header-nav {
+        background-color: #444;
+        box-sizing: border-box;
+        left: 0;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        text-align: center;
+        top: 10vh;
+        transition: all 0.5s ease-in-out;
+        width: 100vw;
+        z-index: 9;
+    }
+
+    .header-nav li {
+        display: block;
+        margin-top: 1em;
+    }
+
+    .header-nav li ~ li {
+        border: 0;
+        padding: 0;
+    }
+
+    .header-nav li:last-child {
+        margin-bottom: 1em;
+    }
+
+    .header-nav li:first-child a {
+        color: #fff;
+    }
+
+    /* HIDE DROPDOWN IN THE NAV MENU */
+
+    .header-nav .dropdown:hover .drop-menu,
+    .header-nav .drop-trigger:after {
+        display: none;
+    }
+
+    .header-nav .drop-trigger {
+        padding-right: 0;
+    }
+
+    .mobile-menu-check:checked ~ .header-nav {
+        max-height: 1000px;
+    }
+
+    .mobile-menu-check:checked ~ .show-mobile-menu::after {
+        background-color: #000;
+        color: #ed6e2f;
+        content: "CLOSE";
+        left: 0;
+        position: absolute;
+        top: 1.5em;
+        width: 100%;
+        text-align: center;
+    }
+
     /* HOME STYLES */
     .home-callout {
         flex-direction: column;
