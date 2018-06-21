@@ -130,6 +130,36 @@ Pseudo-elements effectively create new elements that are not specified in the ma
 #### display: flex
 - Forces all child elements to fill the entire parent element
 
+### Positioning
+
+#### `static`
+
+> every element has a static position by default, so the element will stick to the normal page flow. So if there is a `left/right/top/bottom/z-index` set then there will be no effect on that element
+
+#### `relative`
+
+> an element’s original position remains in the flow of the document, just like the static value. But now `left/right/top/bottom/z-index` will work. The positional properties “nudge” the element from the original position in that direction
+
+#### `absolute`
+
+> the element is removed from the flow of the document and other elements will behave as if it’s not even there whilst all the other positional properties will work on it
+
+##### Note
+
+> An element with relative positioning gives you the control to absolutely position children elements inside of it
+
+#### `fixed`
+
+> the element is removed from the flow of the document like absolutely positioned elements. In fact they behave almost the same, only fixed positioned elements are always relative to the document, not any particular parent, and are unaffected by scrolling
+
+#### `sticky`
+
+> the element is treated like a relative value until the scroll location of the viewport reaches a specified threshold, at which point the element takes a fixed position where it is told to stick
+
+#### `inherit`
+
+> the position value doesn’t cascade, so this can be used to specifically force it to, and inherit the positioning value from its parent
+
 ### Margins, Padding and Borders
 - If you specify the width of a block element and apply a border or padding to it, the additional border or padding will go outside of the content. You end up with an element that is bigger than the dimensions you specified
 - To fix the total width of the content box, and force the *border* and *padding* to fit inside we can use the `box-sizing: border-box` declaration
@@ -172,38 +202,3 @@ Overflow property controls what happens to content that breaks outside of its bo
 
 > *overflow: hidden* works for clearing floats because it makes the browser want to keep content contained entirely within the wrapper. If there is no set dimension on the wrapper, the browser just expands the boundaries of the wrapper to reach the end of the floated elements, and then lets the elements that follow display on the page normally
 
-
-## Jekyll Basics
-
-### Jekyll Object Types
-- layouts/layout templates
-- includes
-- pages/page templates
-- posts
-
-#### Layouts/layout templates
-- Anything in the `_layouts` directory get read by the engine looking for *Liquid* tags and other Jekyll formatting
-- One of the key parts of many Jekyll pages is *frontmatter*, which is metadata at the top of an HTML file (in YAML format) that identifies the kind of layout to be used, a page-specific title, etc.
-- If there is no frontmatter in a layout file, then it is a true layout, and it needs to have a full HTML page structure. If there is frontmatter, then the file is a layout template that can be built into other layouts, and it doesn’t need to have a full HTML page structure
-- Layouts are often the most base-level objects, defining a standard page with a `DOCTYPE, html/head/body` tags, `meta` tags, stylesheet links, JavaScript, etc., and they usually pull in includes like a site header or site footer
-- Layouts have the special ability to load content, like posts, using a generic Liquid tag that looks like this: `{{ content }}`
-
-#### Includes
-- Files in the `_includes` folder can have Jekyll magic even though they don’t need frontmatter, and these files are always intended to be built into something else
-- Includes tend to be little snippets of a site that get repeated on many pages, such as the *header* and *footer* or a standard set of social-media *links*
-
-#### Pages
-- Any other HTML file in the project directory is a page
-- If there is no frontmatter in the file it is a static page, and Jekyll magic will not work (Liquid tags go unprocessed)
-- If a page has frontmatter, though, it will need to specify a layout, and then all the Jekyll magic will be available
-
-#### Posts
-- Posts are self-contained pieces of content, such as blog posts or product details, that are saved as files in the `_posts` directory
-- Content like *blog posts* are typically organized by date, while other post content (like product descriptions) are organized based on other attributes into *collections*
-
-### Style Note: Style HTML5 elements with classes
-- To ensure maximum backwards compatibility, it’s not a good idea to target the newer HTML5 semantic elements like `header` and `nav` directly
-- When an old browser encounters new HTML tags, it sees them as regular `divs`, and any styles are ignored
-- To avoid this situation, it’s better to give such elements classes, and then target your styles at the classes
-
-### Positioning
